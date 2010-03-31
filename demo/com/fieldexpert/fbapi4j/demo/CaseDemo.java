@@ -13,30 +13,31 @@ public class CaseDemo {
 		Configuration conf = new Configuration().configure();
 		Session session = conf.buildSession();
 
-		Case bug1 = new Case("Internal Field Expert", "Misc", "Test Case Title", "Case Event 20").attach("build.xml", "text/xml", "My Custom Build file!").attach(new File("test/fbapi4j.xml"));
+		// Begin Example #1
+		String project = "Pizza2Go";
+		String area = "Shopping Cart";
+		String title = "Shopping Cart is Broken in IE4";
+		String description = "The shopping cart looks all messed up when I try to order a pizza with Internet Explorer 4.0.";
+		Case bug1 = new Case(project,area,title,description).attach(new File("test/ie_screenshot.png"));
 		session.scout(bug1);
 
-		//Case bug2 = new Case("Internal Field Expert", "Misc", "Brand new case", "My description");
-		//session.create(bug2);
-		//session.resolve(bug2);
-		//session.close(bug2);
-
-		Case c = session.get(Case.class, 1190);
-		//session.reopen(c);
-		//session.close(c);
-		//session.resolve(c);
-		//session.reactivate(c);
-		c.setDescription("Some new description 3");
-		c.setTags("Tag 1", "Tag 3");
-		c.setHoursEstimate(2);
-		c.setPriority(7);
+		// Begin Example #2
+		Case bug2 = session.get(Case.class, 1190);
+		session.reopen(bug2);
+		// Or maybe you want to reactivate, like this: session.reactivate(bug2);
+		bug2.setDescription("Add an Ajax lookup to the topping chooser.");
+		bug2.setTags("DHTML", "Ajax");
+		bug2.setHoursEstimate(2);
+		bug2.setPriority(7);
 		Case parent = session.get(Case.class, 1191);
-		c.setParent(parent);
-		c.setDueDate(new Date());
-		c.setArea("Area 3");
-		c.attach(new File("test/com/fieldexpert/fbapi4j/CaseTest.java"));
-		c.setAssignedTo("Nathan Bowser");
-		session.edit(c);
+		bug2.setParent(parent);
+		bug2.setDueDate(new Date());
+		bug2.setArea("Topping Chooser");
+		bug2.attach(new File("test/flowchart.pdf"));
+		bug2.setAssignedTo("Nathan Bowser");
+		session.edit(bug2);
+		// Or maybe you want to resolve, like this: session.resolve(bug2);
+		
 		session.close();
 	}
 

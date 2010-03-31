@@ -21,7 +21,6 @@ public class CaseQueryDemo {
 				System.out.println(event.getDescription());
 				for (Attachment attachment : event.getAttachments()) {
 					System.out.println(attachment.getFilename());
-					//System.out.println(attachment.getContent());
 				}
 			}
 			System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");

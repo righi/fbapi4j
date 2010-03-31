@@ -20,5 +20,4 @@ public class PriorityDemo {
 		System.out.println(session.get(Priority.class, ""));
 		session.close();
 	}
-
 }

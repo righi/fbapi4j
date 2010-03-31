@@ -10,22 +10,20 @@ public class ProjectDemo {
 		Configuration conf = new Configuration().configure();
 		Session session = conf.buildSession();
 
-		//session.create(new Project("Nathan Test Project"));
-
 		for (Project project : session.findAll(Project.class)) {
 			System.out.println(project.getId() + " -> " + project.getName());
 		}
 
-		Project project = session.get(Project.class, 2);
+		int projectId = 2;
+		Project project = session.get(Project.class, projectId);
 		System.out.println(project.getName());
 		System.out.println(project.getCases().size());
 		System.out.println(project.getAreas());
 
-		System.out.println(session.get(Project.class, "Comet Circle").getId());
+		System.out.println(session.get(Project.class, "Pizza2Go").getId());
 		session.close();
 
-		// Throws an exception since there isn't a session available.
+		// This will throw an exception since there's no open session:
 		System.out.println(project.getCases());
 	}
-
 }

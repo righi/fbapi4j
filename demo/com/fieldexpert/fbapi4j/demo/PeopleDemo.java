@@ -13,12 +13,13 @@ public class PeopleDemo {
 		for (Person p : session.findAll(Person.class)) {
 			System.out.println(p.getId() + " -> " + p.getFullname());
 		}
-		Person person = session.get(Person.class, 5);
+		
+		int personId = 5;
+		Person person = session.get(Person.class, personId);
 		System.out.println(person.getFullname());
 
-		System.out.println(session.get(Person.class, "nathan.bowser@fieldexpert.com").getFullname());
+		System.out.println(session.get(Person.class, "nathan@binarypizza.com").getFullname());
 
 		session.close();
 	}
-
 }
