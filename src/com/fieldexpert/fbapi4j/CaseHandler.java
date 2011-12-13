@@ -26,7 +26,7 @@ import com.fieldexpert.fbapi4j.dispatch.Response;
 
 class CaseHandler extends AbstractHandler<Case> {
 
-	private static final String cols = collectionToCommaDelimitedString(asList(Fbapi4j.S_PROJECT, Fbapi4j.S_AREA, Fbapi4j.S_SCOUT_DESCRIPTION, Fbapi4j.S_TITLE, Fbapi4j.S_EVENT, Fbapi4j.EVENTS));
+	private static final String cols = collectionToCommaDelimitedString(asList(Fbapi4j.S_PROJECT, Fbapi4j.S_AREA, Fbapi4j.S_SCOUT_DESCRIPTION, Fbapi4j.S_TITLE, Fbapi4j.S_STATUS, Fbapi4j.S_EVENT, Fbapi4j.EVENTS));
 
 	CaseHandler(Dispatch dispatch, Util util, String token) {
 		super(dispatch, util, token);
@@ -41,7 +41,7 @@ class CaseHandler extends AbstractHandler<Case> {
 	@Override
 	Case build(Map<String, String> data, Document doc) {
 		Case c = new Case(Integer.parseInt(data.get(Fbapi4j.IX_BUG)), data.get(Fbapi4j.S_PROJECT), data.get(Fbapi4j.S_AREA), //
-				data.get(Fbapi4j.S_TITLE), data.get(Fbapi4j.S_SCOUT_DESCRIPTION));
+				data.get(Fbapi4j.S_TITLE), data.get(Fbapi4j.S_SCOUT_DESCRIPTION), data.get(Fbapi4j.S_STATUS));
 		List<Event> events = events(doc, c);
 		c.addEvents(events);
 		update(c, data);
