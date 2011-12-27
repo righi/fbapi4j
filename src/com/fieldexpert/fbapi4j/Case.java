@@ -24,19 +24,20 @@ public class Case extends Entity {
 	private Set<AllowedOperation> allowedOperations;
 
 	public Case(String project, String area, String title, String description) {
-		this(null, project, area, title, description);
+		this(null, project, area, title, description, "");
 	}
 
-	Case(Integer id, String project, String area, String title, String description) {
-		this(id, project, area, title, description, new ArrayList<Event>());
+	Case(Integer id, String project, String area, String title, String description, String status) {
+		this(id, project, area, title, description, status, new ArrayList<Event>());
 	}
 
-	Case(Integer id, String project, String area, String title, String description, List<Event> events) {
+	Case(Integer id, String project, String area, String title, String description, String status, List<Event> events) {
 		fields.put(Fbapi4j.S_PROJECT, project);
 		fields.put(Fbapi4j.S_AREA, area);
 		fields.put(Fbapi4j.S_TITLE, title);
 		fields.put(Fbapi4j.S_EVENT, description);
 		fields.put(Fbapi4j.IX_BUG, id);
+		fields.put(Fbapi4j.S_STATUS, status);
 		this.attachments = new ArrayList<Attachment>();
 		this.events = events;
 	}
@@ -93,6 +94,10 @@ public class Case extends Entity {
 
 	public String getTitle() {
 		return (String) fields.get(Fbapi4j.S_TITLE);
+	}
+
+	public String getStatus() {
+		return (String) fields.get(Fbapi4j.S_STATUS);
 	}
 
 	public String getScoutDescription() {
